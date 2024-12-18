@@ -1,0 +1,1 @@
+package com.katumbela.paymentsystem.domain.entities;
