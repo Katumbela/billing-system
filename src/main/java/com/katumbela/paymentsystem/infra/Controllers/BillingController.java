@@ -18,25 +18,22 @@ import com.katumbela.paymentsystem.domain.entities.Invoice;
 @RestController
 @RequestMapping("/api/billing")
 
-
 public class BillingController {
 
     @Autowired
     private BillingService billingService;
 
     @PostMapping("/create")
-    public ResponseEntity<Invoice>  createInvoice(
-        @RequestParam String customerName,
-        @RequestParam BigDecimal amount,
-        @RequestParam String dueDate,
-        @RequestParam String customerEmail
-    ){
+    public ResponseEntity<Invoice> createInvoice(
+            @RequestParam String customerName,
+            @RequestParam BigDecimal amount,
+            @RequestParam String dueDate,
+            @RequestParam String customerEmail) {
 
         Invoice invoice = billingService.createInvoice(customerName, amount, LocalDate.parse(dueDate), customerEmail);
 
         return ResponseEntity.ok(invoice);
     }
-
 
     @GetMapping("/overdue")
     public ResponseEntity<List<Invoice>> getOverDueInvoices() {

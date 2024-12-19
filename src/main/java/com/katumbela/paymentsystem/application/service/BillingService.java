@@ -4,9 +4,7 @@ import com.katumbela.paymentsystem.domain.entities.Invoice;
 import com.katumbela.paymentsystem.domain.repositories.InvoiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-// import javax.mail.MessagingException;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
+// import javax.mail.MessagingException; 
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -18,13 +16,12 @@ public class BillingService {
     @Autowired
     private InvoiceRepository invoiceRepository;
 
-
     @Autowired
-    private EmailSender emailSender;
-
+    // private emailSender emailSender;
 
     public Invoice createInvoice(String customerName, BigDecimal amount, LocalDate dueDate, String customerEmail)
-            throws MessagingException {
+    // throws MessagingException {
+    {
         Invoice invoice = new Invoice();
         invoice.setCustomerName(customerName);
         invoice.setDueDate(dueDate);
@@ -34,7 +31,7 @@ public class BillingService {
         // Enviar e-mail de lembrete de fatura
         String subject = "Nova Fatura Criada";
         String body = "Olá, " + customerName + ". Sua fatura de R$" + amount + " foi criada e vence em " + dueDate;
-        emailSender.sendInvoiceReminder(customerEmail, subject, body);
+        // emailSender.sendInvoiceReminder(customerEmail, subject, body);
 
         return invoiceRepository.save(invoice);
     }
